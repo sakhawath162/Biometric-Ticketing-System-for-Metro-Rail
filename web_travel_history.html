@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" >
+    <div class="row justify-content-center align-items-center" style="height:50vh">
+        <table class="table table-hover table-dark" >
+            <thead>
+            <tr >
+                <th scope="col">#</th>
+                <th scope="col">Date</th>
+                <th scope="col">Entry Station</th>
+                <th scope="col">Entry Time</th>
+                <th scope="col">Exit Station</th>
+                <th scope="col">Exit Time</th>
+                <th scope="col">Fare</th>
+            </tr>
+            </thead>
+            <tbody>
+               
+                {% for item in items %}
+                    <tr>
+                        <th scope="row">{{loop.index}}</th>
+                        <td>{{item.date}}</td>
+                        <td>{{item.entry_station}}</td>
+                        <td>{{item.entry_time}}</td>
+                        <td>{{item.exit_station}}</td>
+                        <td>{{item.exit_time}}</td>
+                        <td>{{item.fare}}</td>
+                    </tr>
+                    
+                {% endfor %}
+
+            </tbody>
+        </table>
+ </div>
+ </div>
+
+{% endblock %}        
+        
