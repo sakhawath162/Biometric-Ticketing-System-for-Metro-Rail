@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<script type=text/javascript>
+    $(function() {
+      $('a#start').bind('click', function() {
+        $("#meg").html("<h4 style='color:red'>"+ "Put your finger on the sensor" + "</h4>");
+          $.post('/finger_login').done( function(data) {
+              if(data.result!='-1'){
+                setTimeout(function(){ window.location.href = '/booth_recharge_window/' + data.result; }, 2370);
+                $("#image").attr("src","/static/login_finger_final.gif");
+                $("#meg").html("<h4 >" + "SUCCESSFULL!" + "</h4>");
+              } else{
+                $("#meg").html("<h4 style='color:red'>"+ "Try again!" + "</h4>");
+              }
+              
+
+          });
+
+
+
+      });
+    });
+  </script>
+
+<div class="container">
+    <div class="row justify-content-center align-items-center" style="height:100vh">
+        <div class="card mb-4 border-success shadow-lg" style="max-width: 540px;">
+            <div class="row no-gutters row justify-content-center align-items-center">
+            <div class="col-md-4">
+                <img id="image" src="/static/login_img_init.gif" class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">Scan to Recharge</h5>
+                    <p class="card-text text-success" id="meg">Put your finger on the sensor</p>
+                    <p class="card-text"><small class="text-muted">If your are registered, on the next screen you will be able to refill your account</small></p>
+                    <a href="#" class="btn btn-lg btn-success btn-block " id="start">START</a>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
