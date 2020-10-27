@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<script type=text/javascript>
+
+
+$("#ani").hide();
+
+    $(function() {
+      $('a#start').bind('click', function() {
+        var amount = $('#my-amount').data("amount");
+        var id = $('#my-id').data("id");
+        var path = $('#my-gif').data("path");
+        
+        var x = document.getElementById("phonenumber").value;
+        var y = document.getElementById("trxid").value;
+        
+        var x_len = x.length;
+        var y_len = y.length;
+
+        
+        if(x_len == 11 && y_len == 10){
+          
+          document.getElementById("for").style.display="none";
+          $("#ani").attr("src",path);
+
+
+  
+        
+        $.getJSON('/payment/'+ amount + '/' + id, {
+            a: x,
+            b: y
+        }, function(data) {
+          $("#ani").hide();
+          $("#meg").text(data.result);
+        });
+      
+   
+
+
+        } else {
+          $("#meg").html("<h4 style='color:red'>"+ "Invalid Phone number or Transaction ID" +"</h4>");
+        }
+
+
+      });
+    });
+  </script>
+
+
+
+<div class="container" id="all">
+  <meta id="my-amount" data-amount="{{amount}}" >
+  <meta id="my-id" data-id="{{id}}" >
+  <meta id="my-gif" data-path= "{{url_for('static', filename='loading.gif')}}">
+
+  <div class="row justify-content-center align-items-center" style="height:100vh">
+      <div class="col-6">
+          <div class="card">
+              <div class="card-body">
+                <p class="alert alert-success" id="meg">AMOUNT : {{amount}}</p>
+                <div class="mx-auto"><img src="/static/bkash.png"></div>
+                <img id="ani" src="" >
+                  <form action="" autocomplete="off" id="for">
+                      <div class="form-group">
+                          <input type="text" class="form-control" name="username" id="phonenumber" placeholder="Phone number">
+                          <i class="glyphicon glyphicon-user"></i>
+                      </div>
+                      <div class="form-group">
+                          <input type="text" class="form-control" name="password" id="trxid" placeholder="Transaction ID">
+                      </div>
+                      <a href="#" class="btn btn-lg btn-success btn-block " id="start">RECHARGE</a>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+    {% endblock %}
