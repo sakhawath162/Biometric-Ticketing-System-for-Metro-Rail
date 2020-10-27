@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!----
+<h1>Current Balance</h1>
+<div class="container">
+    <div class="row justify-content-center align-items-center" style="height:70vh">
+        <div class="col-8">
+            <div class="card">
+                <div class="card-body">
+                    <h4></h4>
+                    <div class="mx-auto" style="font-size:200px;">
+                        {{current_user.money}}
+                      </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+<div class="container">
+    <div class="row justify-content-center align-items-center" style="height:90vh">
+    <div class="card border-success mb-3" style="max-width: 100rem;">
+        <div class="card-header text-primary"><h4>Current Balance</h4></div>
+        <div class="card-body text-success">
+        <h5 class="card-title text-danger"><h3>{{current_user.name}},</h3><span class="text-success">Your current balance is:</span> </h5>
+        <p class="card-text" style="font-size:200px;">{{current_user.money}}<span class="card-text" style="font-size:70px;">.00 TK</span></p>
+        
+        </div>
+    </div>
+</div>
+</div>    
+{% endblock %}
