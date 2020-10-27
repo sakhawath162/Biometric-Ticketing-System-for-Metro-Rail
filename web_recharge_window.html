@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .btn {
+        width: 80px !important;
+        height: 80px !important;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-sm"><h3>{{current_user.name}}</h3></div>
+      <div class="col-5 mx-auto" >
+        <h5>BALANCE:</h5>
+      </div>
+    </div>
+    <div class="row  ">
+        <div class="col-2"></div>
+        <div class="col-sm"></div>
+        <div class="col-sm " style="font-size:40px;">
+          {{current_user.money}}
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row justify-content-center align-items-center" style="height:70vh">
+          <div class="col-6">
+            <div class="card shadow-lg p-3 mb-5 bg-white  border-danger">
+                <div class="card-header bg-transparent border-success text-success mx-auto"><h3>Choose the amount</h3></div>
+              
+                <div class="row mt-3  mx-auto ">
+                    <div class="col-sm "><a href="{{ url_for('payment_front_end', amount=50,id=current_user.id) }}" class="btn btn-lg btn-primary ">50 </a></div>
+                    <div class="col-sm"><a href="{{ url_for('payment_front_end', amount=100,id=current_user.id) }}" class="btn btn-lg btn-dark">100</a></div>
+                    <div class="col-sm "><a href="{{ url_for('payment_front_end', amount=150,id=current_user.id) }}" class="btn btn-lg btn-info  ">150</a></div>
+                </div>
+                <div class="row mt-5 mx-auto">
+                    <div class="col-sm"><a href="{{ url_for('payment_front_end', amount=200,id=current_user.id) }}" class="btn btn-lg btn-warning">200</a></div>
+                    <div class="col-sm"><a href="{{ url_for('payment_front_end', amount=250,id=current_user.id) }}" class="btn btn-lg btn-danger">250</a></div>
+                    <div class="col-sm "><a href="#" class="btn btn-lg btn-secondary">300</a></div>
+                </div>
+                <div class="row mt-5 mx-auto">
+                    <div class="col-sm"><a href="#" class="btn btn-lg btn-success">500</a></div>
+                    <div class="col-sm"><a href="#" class="btn btn-lg btn-warning">1000</a></div>
+                    <div class="col-sm "><a href="#" class="btn btn-lg btn-danger">2000</a></div>
+                </div>
+            </div>
+        </div>
+        </div>
+      </div>            
+  </div>
+  {% endblock %}
